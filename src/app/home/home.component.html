@@ -1,10 +1,11 @@
 <div class="container">
   <div class="title card">
-    <h1>TO-DO</h1>
+    <h1 >TO-DO</h1>
+    <img src="./../../assets/sort.svg" width="20px" style="position: absolute;top:10%;right:2%;cursor:pointer;" (click)="prioritySort()">
   </div>
     <div class="tasks card" >
       <p *ngIf="datas.length == 0" style="color: white;">{{'You have no tasks to complete.' | uppercase}}</p>
-      <div class="task card" *ngFor="let task of datas" >
+      <div class="task card" *ngFor="let task of datas" [ngStyle]="{'background-color': (task.priority == 'High') ? '#ff000025' : (task.priority == 'Medium') ? '#ffff0025' : '#00ff0025'}">
         <input type="checkbox" style="margin: 0 1rem;" (click)="onComplete(task)" >
         <p>{{task.name}}</p>
         <img class="remove" (click)="onDelIndi(task)" src="./../../assets/remove.svg" >
@@ -21,7 +22,7 @@
   <div class="add" *ngIf="addbtn">
     <form class="card" (submit)="onAdd(form)" #form="ngForm">
       <label for="task">Task: </label>
-      <input type="text" class="taskfield" name="name"  autocomplete="off" size="50" ngModel required>
+      <input type="text" class="taskfield" size="50" name="name"  autocomplete="off" ngModel required>
       <label for="priority">Priority:  </label>
        <select name="priority" class="priorityfield" ngModel required>
           <option value="High">High</option>
@@ -48,8 +49,8 @@
   <!-- Completed -->
   <div class="completed" *ngIf="compbtn" >
     <div class="com card">
-      <h3 style="margin-bottom: 0.8rem;text-align: center;">Completed Tasks</h3>
-      <div class="card" *ngFor="let task of completedTasks" style="margin-bottom: 0.5rem;padding:0.2rem;">
+      <h2 style="margin-bottom: 0.8rem;text-align: center;">Completed Tasks</h2>
+      <div class="card" *ngFor="let task of completedTasks" style="margin-bottom: 0.5rem;padding:0.2rem;background-color:'#3486eb30'">
         <p>{{ task.name }}</p>
       </div>
       <button class="close" (click)="onCancel()">X</button>

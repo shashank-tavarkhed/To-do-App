@@ -1,35 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../todo.service';
-import { HostBinding } from '@angular/core';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations:[
-    trigger('eachCard', [
-      state('open',style({
-        height: '200px',
-        opacity: 0.5,
-        backgroundColor: 'yellow'
-      })),
-      state('close',style({
-        height: '400px',
-        opacity: 1,
-        backgroundColor: 'red'
-      })),
-      transition('open => close',[
-        animate('1s')
-      ])
-    ])
-  ]
 })
 export class HomeComponent implements OnInit {
   datas:Array<any> = [];
@@ -39,7 +14,18 @@ export class HomeComponent implements OnInit {
   compbtn:boolean = false;
   error:boolean = false;
 
+  priority:boolean = false;
+
   constructor(private service: TodoService) { }
+
+  prioritySort(){
+    this.priority = !this.priority;
+    if(this.priority){
+      this.service.PS();
+    }else{
+      this.service.reset()
+    }
+  }
 
   popDel(){
     this.delAll =true;
@@ -68,6 +54,7 @@ export class HomeComponent implements OnInit {
 
   onDelIndi(task:any){
     this.service.delTask(task);
+    if(this.priority) this.service.PS();
   }
 
   onDelAll(){
@@ -78,6 +65,7 @@ export class HomeComponent implements OnInit {
   onComplete(task:any){
     task.value = true;
     this.service.completeTask(task);
+    if(this.priority) this.service.PS();
   }
 
   onCancel(){
