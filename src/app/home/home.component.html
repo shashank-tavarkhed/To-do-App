@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="title card">
+    <h1>TO-DO</h1>
+  </div>
+    <div class="tasks card" >
+      <p *ngIf="datas.length == 0" style="color: white;">{{'You have no tasks to complete.' | uppercase}}</p>
+      <div class="task card" *ngFor="let task of datas" >
+        <input type="checkbox" style="margin: 0 1rem;" (click)="onComplete(task)" >
+        <p>{{task.name}}</p>
+        <img class="remove" (click)="onDelIndi(task)" src="./../../assets/remove.svg" >
+      </div>
+
+  </div>
+  <div class="btns card">
+    <img class="del-btn" (click)="popDel()" src="./../../assets/delete.svg" >
+    <img class="completed-btn" (click)="popComp()" src="./../../assets/completed.svg" >
+    <img class="add-btn" (click)="popAdd()" src="./../../assets/add.svg" >
+  </div>
+
+      <!-- add -->
+  <div class="add" *ngIf="addbtn">
+    <form class="card" (submit)="onAdd(form)" #form="ngForm">
+      <label for="task">Task: </label>
+      <input type="text" class="taskfield" name="name"  autocomplete="off" size="50" ngModel required>
+      <label for="priority">Priority:  </label>
+       <select name="priority" class="priorityfield" ngModel required>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low" selected>Low</option>
+       </select>
+       <p style="color: red; font-size: 0.8rem;margin-top:1rem;" *ngIf="error">*All fields are required</p>
+      <button type="submit" >Add</button>
+      <button class="close" (click)="onCancel()">X</button>
+    </form>
+  </div>
+
+
+  <!-- del -->
+  <div class="delAll" *ngIf="delAll">
+    <div class="del card">
+      <h3>Are you sure to delete all tasks?</h3>
+      <h6>Note: This will also wipe all your compeleted task.</h6>
+      <button (click)="onCancel()">Cancel</button>
+      <button style="float: right;" (click)="onDelAll()">Yes</button>
+    </div>
+  </div>
+
+  <!-- Completed -->
+  <div class="completed" *ngIf="compbtn" >
+    <div class="com card">
+      <h3 style="margin-bottom: 0.8rem;text-align: center;">Completed Tasks</h3>
+      <div class="card" *ngFor="let task of completedTasks" style="margin-bottom: 0.5rem;padding:0.2rem;">
+        <p>{{ task.name }}</p>
+      </div>
+      <button class="close" (click)="onCancel()">X</button>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- [(ngModel)]="task.value" -->
+
+
+<!--
+  1.  scroll **✅
+
+
+  2.  dialog boxes✅✅
+        add✅
+        delete✅
+        completed✅
+  3.  logic✅✅
+        add task
+        delete all
+        show completed
+
+  4. Errors
+    form fill.....
+
+    priority wise color adjusting
+
+  // extras
+  4.  animations
+
+ -->

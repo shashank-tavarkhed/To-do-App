@@ -1,0 +1,235 @@
+* {
+  scrollbar-width: thin;
+  scrollbar-color: white;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 20px;
+}
+
+.container{
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(
+          to top right,
+          rgba(0, 255, 255, 0.57),
+          rgba(255, 0, 0, 0.44)
+      ),
+      linear-gradient(
+          to bottom right,
+          rgba(71, 227, 134, 1),
+          rgba(190, 39, 184, 0.58),
+          rgba(5, 0, 249, 1)
+      );
+
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .card{
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    border: 0.01rem solid rgba(255, 255, 255, 0.3);
+    filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.25));
+    backdrop-filter: blur(0.02rem);
+  }
+
+  .title{
+      width: 80%;
+      height: fit-content;
+      margin-bottom: 0.5rem;
+      text-align: center;
+      color: rgba(255,255,255,0.8);
+  }
+  .tasks{
+      width: 80%;
+      height: 60%;
+      margin-bottom: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0.5rem;
+
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: 10px;
+
+      .task{
+        width: 100%;
+        margin-bottom: 0.4rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        word-wrap: break-word;
+        word-break: break-all;
+        color: white;
+        input{
+          cursor: pointer;
+        }
+        p{
+        font-weight: 300;
+        flex-grow: 1;
+        }
+        .remove{
+          height: fill;
+          cursor: pointer;
+          margin: 0 0.5rem;
+        }
+
+      }
+  }
+
+  .add{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(2px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    form{
+      // width: fit-content;
+      padding: 1rem;
+      background-color: rgba(255,255,255,0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      input{
+        border: none;
+        margin-bottom: 1rem;
+      }
+
+      .priorityfield{
+        width: stretch;
+        border: none;
+      }
+
+      .close{
+        position:absolute;
+        right: 8px;
+        top: 8px;
+        background-color: transparent;
+        border: none;
+        color: white;
+        margin: 0;
+        padding: 0;
+      }
+
+      button{
+        padding: 0.5rem;
+        margin-top: 1rem;
+        border: none;
+        cursor: pointer;
+        border-radius: 0.3rem;
+        background-color: transparent;
+        border: 1px solid white;
+        color: white;
+      }
+    }
+  }
+
+  .delAll{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    // background-color: rgba(253, 253, 253, 0.3);
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(2px) ;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+    .del{
+    padding: 2rem;
+    }
+
+    button{
+      padding: 0.5rem;
+      margin-top: 1.5rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 0.3rem;
+      background-color: transparent;
+      border: 1px solid white;
+      color: white;
+    }
+  }
+
+  .completed{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(2px) ;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    .com{
+      width: 70%;
+      height: 70%;
+      padding: 1rem;
+      word-wrap: break-word;
+      word-break: break-all;
+      overflow-y: auto;
+      .close{
+        position:absolute;
+        right: 15px;
+        top: 15px;
+        background-color: transparent;
+        border: none;
+        color: white;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .btns{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    img{
+      cursor: pointer;
+      border: 0.01rem solid rgba(255, 255, 255, 0.3);
+      background-color: rgba(255, 255, 255, 0.25);
+      padding: 0.5rem;
+      margin: 0.5rem;
+      border-radius: 0.5rem;
+    }
+  }
+
+}
